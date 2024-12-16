@@ -13,11 +13,11 @@ Para desenvolver o conteúdo abordado no tópico de Dividir e Conquistar, resolv
 
 ## Screenshots
 
-- [218 (Difícil) - The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/description)
+- [218 (Difícil) - The Skyline Problem](https://leetcode.com/problems/the-skyline-problem)
 <img width="734" alt="The Skyline Problem" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/master/leetcode/screenshots/218_accepted.png">
 
-- [2876 (Difícil) - Count visited nodes in a directed graph](https://leetcode.com/problems/count-visited-nodes-in-a-directed-graph/)
-<img width="734" alt="Count visited nodes in a directed graph" src="https://github.com/projeto-de-algoritmos-2024/Grafos1_GoMazing/blob/leetcode/leetcode/screenshots/2876_accepted.png">
+- [23 (Difícil) - Merge 'K' Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+<img width="734" alt="Merge 'K' Sorted Lists" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/master/leetcode/screenshots/23_accepted.png">
 
 - [2360 (Difícil) - Longest cycle in a graph](https://leetcode.com/problems/longest-cycle-in-a-graph/)
 <img width="734" alt="Longest cycle in a graph" src="https://github.com/projeto-de-algoritmos-2024/Grafos1_GoMazing/blob/leetcode/leetcode/screenshots/2360_accepted.png">
