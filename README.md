@@ -14,7 +14,7 @@ Para desenvolver o conteúdo abordado no tópico de Dividir e Conquistar, resolv
 ## Screenshots
 
 - [218 (Difícil) - The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/description)
-<img width="734" alt="The Skyline Problem" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/leetcode/leetcode/screenshots/218_accepted.png">
+<img width="734" alt="The Skyline Problem" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/leetcode/screenshots/218_accepted.png">
 
 - [2876 (Difícil) - Count visited nodes in a directed graph](https://leetcode.com/problems/count-visited-nodes-in-a-directed-graph/)
 <img width="734" alt="Count visited nodes in a directed graph" src="https://github.com/projeto-de-algoritmos-2024/Grafos1_GoMazing/blob/leetcode/leetcode/screenshots/2876_accepted.png">
