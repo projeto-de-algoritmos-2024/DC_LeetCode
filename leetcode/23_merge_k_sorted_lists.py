@@ -2,10 +2,27 @@ from typing import List, Optional
 import heapq
 
 
+# Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+    def __eq__(self, other):
+        if not other or not isinstance(other, ListNode):
+            return False
+        return self.val == other.val and self.next == other.next
+
+    def __repr__(self):
+        return f"{self.val} -> {self.next}"
+
+    def __str__(self):
+        result = []
+        current = self
+        while current:
+            result.append(str(current.val))
+            current = current.next
+        return " -> ".join(result)
 
 
 class Solution:
