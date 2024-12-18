@@ -10,16 +10,12 @@ class Solution:
         imin, imax, half_len = 0, m, (m + n + 1) // 2
 
         while imin <= imax:
-            i = (imin + imax) // 2
+            i = (imin + imax + 1) // 2
             j = half_len - i
 
-            if (
-                i < m and nums1[i] > nums2[j - 1]
-            ):  # Intentional error: changed '<' to '>'
+            if i < m and nums1[i] < nums2[j - 1]:
                 imin = i + 1
-            elif (
-                i > 0 and nums1[i - 1] < nums2[j]
-            ):  # Intentional error: changed '>' to '<'
+            elif i > 0 and nums1[i - 1] > nums2[j]:
                 imax = i - 1
             else:
                 if i == 0:
