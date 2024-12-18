@@ -7,9 +7,10 @@
 |Matrícula | Aluno |
 | -- | -- |
 | 19/0139323  |  Pedro Menezes Rodiguero |
+| xx/xxxxxxx  |  Xxxxx Xxxx Xxxx |
 
 ## Sobre 
-Para desenvolver o conteúdo abordado no tópico de Dividir e Conquistar, resolvi 5 exercícios do LeetCode, sendo eles, 4 de nível difícil e 1 de nível médio.
+Para desenvolver o conteúdo abordado no tópico de Dividir e Conquistar, resolvemos 5 exercícios do LeetCode, sendo eles todos de nível difícil.
 
 ## Screenshots
 
@@ -19,39 +20,30 @@ Para desenvolver o conteúdo abordado no tópico de Dividir e Conquistar, resolv
 - [23 (Difícil) - Merge 'K' Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
 <img width="734" alt="Merge 'K' Sorted Lists" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/master/leetcode/screenshots/23_accepted.png">
 
-- [2360 (Difícil) - Longest cycle in a graph](https://leetcode.com/problems/longest-cycle-in-a-graph/)
-<img width="734" alt="Longest cycle in a graph" src="https://github.com/projeto-de-algoritmos-2024/Grafos1_GoMazing/blob/leetcode/leetcode/screenshots/2360_accepted.png">
+- [4 (Difícil) - Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
+<img width="734" alt="Median of Two Sorted Arrays" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/master/leetcode/screenshots/4_accepted.png">
 
-- [685 (Difícil) - Redundant connection II](https://leetcode.com/problems/redundant-connection-ii/)
-<img width="734" alt="Redundant connection II" src="https://github.com/projeto-de-algoritmos-2024/Grafos1_GoMazing/blob/leetcode/leetcode/screenshots/685_accepted.png">
+- [### (Difícil) - Questao 4](https://leetcode.com/problems/redundant-connection-ii/)
+<img width="734" alt="Questao 4" src="">
 
-- [514 (Difícil) - Freedom trail](https://leetcode.com/problems/freedom-trail/)
-<img width="734" alt="Freedom trail" src="https://github.com/projeto-de-algoritmos-2024/Grafos1_GoMazing/blob/leetcode/leetcode/screenshots/514_accepted.png">
+- [### (Difícil) - Questao 5](https://leetcode.com/problems/freedom-trail/)
+<img width="734" alt="Questao 5" src="">
 
 ## Instalação 
-**Linguagem**: Go, Python<br>
+**Linguagem**: Python<br>
 
 ## 1. Clone o repositório 
 
 ```bash
-git clone https://github.com/projeto-de-algoritmos-2024/Grafos1_GoMazing
+git clone https://github.com/projeto-de-algoritmos-2024/DC_LeetCode
 ```
 
-### 2. Go
+### 2. Python
 
 ```bash
-go mod init
-go mod tidy
-go run 2497_star_sum_med.go 
-go run 685_redundant_connection_hd.go
-go run 514_freedom_trail_hd.go
-```
-
-### 3. Python
-
-```bash
-python3 2876_visited_nodes_hd.py
-python3 2360_longest_cycle_hd.py
+python3 23_merge_k_sorted_lists.py
+python3 218_syline_problem.py
+python3 4_median_two_sorted_arrays.py
 ```
 
 ## Uso 
