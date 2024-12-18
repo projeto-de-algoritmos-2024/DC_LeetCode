@@ -3,6 +3,7 @@ from typing import List
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        # Ensure nums1 is the smaller array
         if len(nums1) > len(nums2):
             nums1, nums2 = nums2, nums1
 
@@ -10,7 +11,7 @@ class Solution:
         imin, imax, half_len = 0, m, (m + n + 1) // 2
 
         while imin <= imax:
-            i = (imin + imax + 1) // 2
+            i = (imin + imax) // 2
             j = half_len - i
 
             if i < m and nums1[i] < nums2[j - 1]:
