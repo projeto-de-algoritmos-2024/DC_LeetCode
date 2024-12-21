@@ -28,12 +28,5 @@ def mergeSort(v):
 
 class Solution:
     def kthLargestNumber(self, nums, k: int) -> str:
-        # print(nums) DEBUG
         nums = mergeSort(nums)
-        # print(nums) DEBUG
-        return nums[k-1] # Com o vetor/lista ordenada, retornando o quarto elemento
-    
-# nums, k = ["2","21","12","1"], 4
-
-# sol = Solution()
-# sol.kthLargestNumber(nums, k)
+        return str(nums[len(nums)-k]) # Com o vetor/lista ordenada, retornando o quarto elemento
