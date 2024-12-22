@@ -26,8 +26,8 @@ Para desenvolver o conteúdo abordado no tópico de Dividir e Conquistar, resolv
 - [1985 (Médio) - Find the Kth Largest Integer in the Array](https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/)
 <img width="734" alt="Find the Kth Largest Integer in the Array" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/master/leetcode/screenshots/1985_accepted.png">
 
-- [### (Difícil) - Questao 4](https://leetcode.com/problems/redundant-connection-ii/)
-<img width="734" alt="Questao 4" src="">
+- [1649 (Difícil) - Create Sorted Array through Instructions](https://leetcode.com/problems/create-sorted-array-through-instructions/)
+<img width="734" alt="Create Sorted Array through Instructions" src="https://github.com/projeto-de-algoritmos-2024/DC_LeetCode/blob/master/leetcode/screenshots/1649_accepted.png">
 
 - [### (Difícil) - Questao 5](https://leetcode.com/problems/freedom-trail/)
 <img width="734" alt="Questao 5" src="">
