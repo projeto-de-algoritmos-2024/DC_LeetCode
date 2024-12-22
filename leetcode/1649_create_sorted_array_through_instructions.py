@@ -1,87 +1,43 @@
-# Definindo algoritmo de busca binaria D&C que busca a posicao ideal para adicionar
-# o valor de modo que a lista mantenha-se ordenada e sem repeticoes
-def binary_search_insertion_position(nums, instruction):
-    # Setando inicio e fim da lista nums
-    left, right = 0, len(nums) - 1
+# Segunda tentativa no exercicio 1649
+# Re-Utilizando um algoritmo de D&C de arvore indexada binaria (arvore de fenwick) para armazenar as somas dos 
+# subsets do vetor e facilitar o calculo do custo de insercoes
+class FenwickTree:
+    def __init__(self, n):
+        self.n = n # Tamanho máximo
+        self.tree = [0] * (n + 1) # inicia a lista de n+1 elementos iguais a zero para armazenar as somas
     
-    # Algoritmo de busca (nunca retorna -1 pois o caso de ser o maior ou menor numero ja foram cobertos)
-    while left <= right:
-        mid = left + (right - left) // 2
-        
-        if nums[mid] == instruction or (nums[mid] <= instruction and nums[mid+1] > instruction):
-            return mid+1  # Retorna ao encontrar o local de insercao
-        elif nums[mid] > instruction:
-            right = mid - 1
-        else:
-            left = mid + 1
+    def update(self, current_index):
+        while current_index <= self.n:
+            # print(self.tree[current_index])
+            self.tree[current_index] += 1
+            # print(self.tree[current_index])
+            current_index += current_index & -current_index
     
-    # retorno padrao
-    return -1
-
-
-# Algoritmo padrao de busca binaria para quando a instrucao ja esta no array num ou para busca-la
-def binary_search_regular(nums, instruction):
-    # Setando inicio e fim da lista nums
-    left, right = 0, len(nums) - 1
+    def query(self, current_index):
+        result = 0
+        while current_index > 0:
+            result += self.tree[current_index]
+            current_index -= current_index & -current_index
+        return result
     
-    # Algoritmo de busca
-    while left <= right:
-        mid = left + (right - left) // 2
-        
-        if nums[mid] == instruction:
-            return mid  # Retorna ao encontrar o local de insercao
-        elif nums[mid] > instruction:
-            right = mid - 1
-        else:
-            left = mid + 1
-    
-    # retorno padrao
-    return -1
-
 class Solution:
-    def createSortedArray(self, instructions) -> int:
-        nums = []
-        largest = 0
-        smallest = instructions[0]
+    def createSortedArray(self, instructions: List[int]) -> int:
+        ins_max_value = max(instructions)
+        fenwick = FenwickTree(ins_max_value)
         cost = 0
-        for aux in instructions:
-            # Caso seja o maior insere no final e o custo eh zero por nao haverem numeros maiores no array
-            if aux >= largest:
-                largest = aux
-                print('Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, len(nums), 0, min(len(nums), 0)))
-                nums.append(aux)
-            # Caso seja o menor insere no final e o custo eh zero por nao haverem numeros menores no array
-            elif aux <= smallest:
-                smallest = aux
-                print('Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, 0, len(nums), min(0, len(nums))))
-                nums.insert(0, aux)
-            else:
-                pos = binary_search_regular(nums, aux)
-                insert_pos = binary_search_insertion_position(nums, aux)
-                if(pos != -1):
-                    print('nums is: ', nums)
-                    # Com a posicao de insercao ideal, busca pelo final da repeticao do numero caso haja
-                    repeat_end = pos
-                    while(nums[repeat_end] == aux and repeat_end < len(nums)-1):
-                        repeat_end += 1
-                    # Com a posicao de insercao ideal, busca pelo inicio da repeticao do numero caso haja    
-                    repeat_begin = pos
-                    while(nums[repeat_begin] == aux):
-                        repeat_begin -= 1
-                        
-                    print('exists: Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, repeat_begin+1, len(nums)-(repeat_end), min(repeat_begin+1, len(nums) - (repeat_end+1))))
-
-                    cost += min(repeat_begin+1, len(nums) - (repeat_end+1))
-                    nums.insert(insert_pos, aux)
-                else:
-                    print('nums is: ', nums)
-                    # Roda busca binaria pela posicao de insercao                    
-                    cost += min(insert_pos, len(nums) - insert_pos)
-                    print('Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, insert_pos, len(nums)-insert_pos, min(insert_pos, len(nums)-insert_pos)))
-                    insert_pos = binary_search_insertion_position(nums, aux)
-                    nums.insert(insert_pos, aux)
-                    #print( 'now nums is: ', str(nums))
-        # print(nums)
-        # print(len(nums))
-        # print(cost)
+        
+        for current_index, num in enumerate(instructions):
+            # Soma número de elementos menores que a instrucao atual
+            smaller = fenwick.query(num - 1)
+            
+            # Soma o número de elementos maiores que a instrucao atual
+            greater = (current_index - fenwick.query(num))
+            
+            # Calcula o custo
+            cost += min(smaller, greater)
+            cost %= 10**9 + 7 # Modulo para valores muito grandes
+            
+            # Adiciona o valor atual na arvore
+            fenwick.update(num)
+        
         return cost
