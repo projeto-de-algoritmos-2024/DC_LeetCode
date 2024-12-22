@@ -15,6 +15,8 @@ def subsetSums(arr, l, r, sum=0):
  
     # Print current subset
     if l > r:
+        # print('current vector: ', arr[l:r])
+        # print('returning sum: ', [sum])
         return [sum]
  
     # Subset including arr[l]
@@ -53,27 +55,44 @@ def mergeTwo(v1_str, v2_str):
     sorted.extend(v2[r:])
     return sorted
 
+# Definindo algoritmo de busca binaria D&C que busca a posicao ideal para adicionar
+# o valor de modo que a lista mantenha-se ordenada e sem repeticoes
+def binary_search(nums, key):
+    # Setando inicio e fim da lista nums
+    left, right = 0, len(nums) - 1
+    
+    while left <= right:
+        # Find the middle index
+        mid = left + (right - left) // 2
+        
+        if nums[mid] == key:
+            return mid  # Return the index if found
+        elif nums[mid] > key:
+            right = mid - 1
+        else:
+            left = mid + 1
+    
+    # If the instruction is not found, return -1
+    return -1
+
 class Solution:
     def countRangeSum(self, nums, lower: int, upper: int) -> int:
         nums_len = len(nums)
         ranges_count = 0
         sums = subsetSums(nums, 0, nums_len-1)
         print(sums)
-        if (nums == [0] and 0 >= lower and 0 <= upper):
-            ranges_count = 1
-        elif(0 in nums):
-            for i in sums:
-                if(i >= lower and i <= upper):
-                    ranges_count += 1
-        else:
-            for i in sums:
-                if(i >= lower and i <= upper and i != 0):
-                    ranges_count += 1
+        zero = binary_search(sums, 0)
+        print(zero)
+        if(zero != -1):
+            sums.remove(0)
+        for i in sums:
+            if(i >= lower and i <= upper):
+                ranges_count += 1
         return ranges_count
         
 sol = Solution()
-nums = [-2, 5, -1]
+nums = [2147483647,-2147483648,-1,0]
 nums_len = len(nums)
-lower, upper = -2, 2
+lower, upper = -1, 0
 count = sol.countRangeSum(nums, lower, upper)
 print(count)
