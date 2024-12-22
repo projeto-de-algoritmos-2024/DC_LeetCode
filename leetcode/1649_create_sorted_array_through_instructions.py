@@ -8,7 +8,7 @@ def binary_search_insertion_position(nums, instruction):
     while left <= right:
         mid = left + (right - left) // 2
         
-        if nums[mid] < instruction and nums[mid+1] > instruction:
+        if nums[mid] == instruction or (nums[mid] <= instruction and nums[mid+1] > instruction):
             return mid+1  # Retorna ao encontrar o local de insercao
         elif nums[mid] > instruction:
             right = mid - 1
@@ -41,50 +41,47 @@ def binary_search_regular(nums, instruction):
 class Solution:
     def createSortedArray(self, instructions) -> int:
         nums = []
-        nums_repeated = []
         largest = 0
         smallest = instructions[0]
         cost = 0
         for aux in instructions:
             # Caso seja o maior insere no final e o custo eh zero por nao haverem numeros maiores no array
-            if aux > largest:
+            if aux >= largest:
                 largest = aux
                 print('Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, len(nums), 0, min(len(nums), 0)))
                 nums.append(aux)
-                nums_repeated.append(aux)
-                #print( 'now nums is: ', str(nums))
             # Caso seja o menor insere no final e o custo eh zero por nao haverem numeros menores no array
-            elif aux < smallest:
+            elif aux <= smallest:
                 smallest = aux
                 print('Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, 0, len(nums), min(0, len(nums))))
                 nums.insert(0, aux)
-                nums_repeated.insert(0, aux)
-                #print( 'now nums is: ', str(nums))
             else:
                 pos = binary_search_regular(nums, aux)
-                insert_pos_repeated = binary_search_insertion_position(nums_repeated, aux)
+                insert_pos = binary_search_insertion_position(nums, aux)
                 if(pos != -1):
-                    print('nums is: ', nums_repeated)
-                    print('exists: Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, pos, len(nums)-(pos+1), min(pos, len(nums) - (pos+1))))
-                    cost += min(pos, len(nums) - (pos+1))
-                    nums_repeated.insert(insert_pos_repeated, aux)
-                    #print( 'now nums is: ', str(nums))
-                else:
-                    print('nums is: ', nums_repeated)
-                    # Roda busca binaria pela posicao de insercao                    
-                    cost += min(insert_pos_repeated, len(nums) - insert_pos_repeated)
-                    print('Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, insert_pos_repeated, len(nums_repeated)-insert_pos_repeated, min(insert_pos_repeated, len(nums)-insert_pos_repeated)))
-                    
-                    insert_pos = binary_search_insertion_position(nums_repeated, aux)
+                    print('nums is: ', nums)
+                    # Com a posicao de insercao ideal, busca pelo final da repeticao do numero caso haja
+                    repeat_end = pos
+                    while(nums[repeat_end] == aux and repeat_end < len(nums)-1):
+                        repeat_end += 1
+                    # Com a posicao de insercao ideal, busca pelo inicio da repeticao do numero caso haja    
+                    repeat_begin = pos
+                    while(nums[repeat_begin] == aux):
+                        repeat_begin -= 1
+                        
+                    print('exists: Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, repeat_begin+1, len(nums)-(repeat_end), min(repeat_begin+1, len(nums) - (repeat_end+1))))
+
+                    cost += min(repeat_begin+1, len(nums) - (repeat_end+1))
                     nums.insert(insert_pos, aux)
-                    nums_repeated.insert(insert_pos_repeated, aux)
-
+                else:
+                    print('nums is: ', nums)
+                    # Roda busca binaria pela posicao de insercao                    
+                    cost += min(insert_pos, len(nums) - insert_pos)
+                    print('Insert %2d with cost min(%2d, %2d) = %2d.' % (aux, insert_pos, len(nums)-insert_pos, min(insert_pos, len(nums)-insert_pos)))
+                    insert_pos = binary_search_insertion_position(nums, aux)
+                    nums.insert(insert_pos, aux)
                     #print( 'now nums is: ', str(nums))
-        print(nums)
-        print(len(nums))
-        print(cost)
-        return 0
-
-instructions = [1,3,3,3,2,4,2,1,2]
-sol = Solution()
-sol.createSortedArray(instructions)
+        # print(nums)
+        # print(len(nums))
+        # print(cost)
+        return cost
